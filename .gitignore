@@ -9,5 +9,4 @@ npm-debug.*
 
 node_modules/
 package-lock.json
-app/css/*
-gulp
+

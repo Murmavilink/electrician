@@ -1,5 +1,3 @@
-import { animate } from './helpers'
-
 
 const modal = () => {
     console.log('Modal');
