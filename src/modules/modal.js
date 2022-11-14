@@ -1,6 +1,6 @@
 
 const modal = () => {
-    console.log('Modal');
+    console.log('ss');
 }
 
 
