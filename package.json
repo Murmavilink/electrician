@@ -1,5 +1,5 @@
 {
-  "name": "webpack",
+  "name": "Site-Electrician",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "watch": "webpack --watch --mode=development",
     "start": "webpack serve --mode=development --open"
   },
-  "author": "",
+  "author": "Mur",
   "license": "ISC",
   "devDependencies": {
     "webpack": "^5.74.0",
