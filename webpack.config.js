@@ -8,17 +8,11 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     devServer: {
-        // hot: true,
-        // static: {
-        //     directory: './dist',
-        //     watch: true
-        // }
-        port: 8888, 
-        overlay: { 
-            warnings: boolean,
-            errors: boolean
-        },
-        open: true, 
+        hot: true,
+        static: {
+            directory: './dist',
+            watch: true
+        }  
     }
 }
 
