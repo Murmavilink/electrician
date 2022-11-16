@@ -1,32 +1,28 @@
-import Swiper, { Navigation, Pagination } from 'swiper';
+import Swiper, {Pagination, Autoplay } from 'swiper';
 
 const slider = () => {
 
+  const tables = document.querySelectorAll('.table')
+
     const swiper = new Swiper('.top-slider-swiper', {
-        modules: [Navigation, Pagination],
+        modules: [Pagination, Autoplay],
         loop: true,
-        // speed: 2000,
-        // autoplay: {
-        //   enabled: true,
-        //   delay: 1,
-        // },
-        // spaceBetween: 30,
-        // centeredSlides: true,
-        // loop: true,
         autoplay: {
           delay: 3000,
-        //   disableOnInteraction: false,
         },
-        // slidesPerView: 1,
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
-        },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
+        }
       });
+
+
+      tables.forEach(table => {
+          
+          table.classList.add('active')
+      })
+
+
 }
 
 
