@@ -1,3 +1,4 @@
+import { animate } from './helpers'
 import Swiper, {Pagination, Autoplay } from 'swiper';
 
 const slider = () => {
@@ -16,10 +17,8 @@ const slider = () => {
         }
       });
 
-
-      tables.forEach(table => {
-          
-          table.classList.add('active')
+      tables.forEach(table => {  
+        table.classList.add('active')
       })
 
 
