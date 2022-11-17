@@ -1,8 +1,9 @@
 import modal from './modules/modal';
 import scroll from './modules/scroll';
-import slider from './modules/slider'
-
+import slider from './modules/slider';
+import accordeon from './modules/accordeon';
 
 modal();
 scroll();
 slider();
+accordeon();
