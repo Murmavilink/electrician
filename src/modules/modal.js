@@ -5,8 +5,9 @@ const modal = () => {
     const modalCallback = document.querySelector('.modal-callback');
     const modalOverlay = document.querySelector('.modal-overlay');
     const modalClose = modalCallback.querySelector('.modal-close');
+    const buttonServices = document.querySelector('.button-services')
 
-    const arrayElements = [...callbackBtns, ...carouselElements];
+    const arrayElements = [...callbackBtns, ...carouselElements, buttonServices];
 
     arrayElements.forEach(element => {
         element.addEventListener('click', (e) => {
