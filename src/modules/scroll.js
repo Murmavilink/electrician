@@ -28,15 +28,18 @@ const scroll = () => {
     window.addEventListener('scroll', () => {
         if(document.documentElement.scrollTop > 500) {
             upBtn.style.display = 'block';
+
+            upBtn.addEventListener('click', () => {
+                scrollToSection(upScroll)
+            });
+            
         } else {
             upBtn.style.display = 'none';
         }
     });
 
 
-    upBtn.addEventListener('click', () => {
-        scrollToSection(upScroll)
-    });
+    
     
 }
 
