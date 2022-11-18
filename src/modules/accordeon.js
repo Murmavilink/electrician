@@ -11,9 +11,13 @@ const accordeon = () => {
 
     accordeonElements.forEach(element => {
         element.addEventListener('click', () => {
-            removeClassActive();
-            element.classList.add('active');
-            element.querySelector('.element-content').style.display = 'block';
+            if(element.classList.contains('active')) {
+                removeClassActive();
+            } else {
+                removeClassActive();
+                element.classList.add('active');
+                element.querySelector('.element-content').style.display = 'block';
+            }
         });
     });
 
