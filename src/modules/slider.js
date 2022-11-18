@@ -41,10 +41,10 @@ const slider = () => {
 			  slidesPerView: 3,
 			  spaceBetween: 20,
 			},
-			768: {
+			540: {
 			  slidesPerView: 2,
 			},
-			425: {
+			360: {
 			  slidesPerView: 1,
 			},
 		},
