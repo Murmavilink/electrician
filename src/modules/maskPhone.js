@@ -1,6 +1,6 @@
 const maskPhone = (selector, masked = '+7 (___) ___-__-__') => {
     const elems = document.querySelectorAll(selector);
-  
+
     const mask = event => {
       const {keyCode, target} = event;
       const template = masked;

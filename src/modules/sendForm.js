@@ -1,6 +1,7 @@
-import maskPhone from 'maskphone';
+// import maskPhone from 'maskphone';
+import maskPhone from './maskPhone';
 
-maskPhone('селектор элементов', 'маска, если маску не передать то будет работать стандартная +7 (___) ___-__-__');
+maskPhone('.tel');
 
 
 const sendForm = (idForm) => {
@@ -11,6 +12,11 @@ const sendForm = (idForm) => {
     const errorText = 'Что-то пошло не так...';
     const successText = ' Спасибо! Мы скоро с вами свяжемся!';
 
+
+    formInputs[0].addEventListener('input', () => {
+        formInputs[0].value = formInputs[0].value.replace(/\w/, '')
+    });
+    
 
     const sendData = (data) => {
         return fetch('https://jsonplaceholder.typicode.com/posts', {
