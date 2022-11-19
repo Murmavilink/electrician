@@ -27,7 +27,10 @@ const sendForm = (idForm) => {
         }).then(res => res.json())
     }
 
-    const submitForm = () => {
+    const submitForm = (event) => {
+        event.preventDefault();
+        // console.log(event.target);
+
         const formData = new FormData(form);
         const formBody = {}
 
@@ -51,11 +54,7 @@ const sendForm = (idForm) => {
     }
 
 
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        submitForm();
-    });
+    form.addEventListener('submit', submitForm);
 
 
 };
