@@ -1,3 +1,8 @@
+import maskPhone from 'maskphone';
+
+maskPhone('селектор элементов', 'маска, если маску не передать то будет работать стандартная +7 (___) ___-__-__');
+
+
 const sendForm = (idForm) => {
     const form = document.getElementById(idForm);
     const formInputs = document.querySelectorAll('.form-group input'); 
