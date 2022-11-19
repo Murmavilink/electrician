@@ -9,4 +9,4 @@ modal();
 scroll();
 slider();
 accordeon();
-sendForm('form-callback');
+sendForm('form');

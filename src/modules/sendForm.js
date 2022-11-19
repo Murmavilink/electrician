@@ -1,11 +1,12 @@
 import maskPhone from './maskPhone';
+import validate from './validate';
 
 maskPhone('.tel');
 
 
 const sendForm = (idForm) => {
     const form = document.getElementById(idForm);
-    const formInputs = document.querySelectorAll('.form-group input'); 
+    const formInputs = document.querySelectorAll('#form input');
     const statusBlock = document.createElement('p');
     const loadText = 'Загрузка...';
     const errorText = 'Что-то пошло не так...';
@@ -13,9 +14,9 @@ const sendForm = (idForm) => {
 
 
     formInputs[0].addEventListener('input', () => {
-        formInputs[0].value = formInputs[0].value.replace(/\w/, '')
+        formInputs[0].value = formInputs[0].value.replace(/\w+/, '')
     });
-    
+
 
     const sendData = (data) => {
         return fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -29,33 +30,37 @@ const sendForm = (idForm) => {
 
     const submitForm = (event) => {
         event.preventDefault();
-        // console.log(event.target);
 
-        const formData = new FormData(form);
-        const formBody = {}
+        if (validate(formInputs)) {
+            const formData = new FormData(form);
+            const formBody = {}
 
-        statusBlock.textContent = loadText;
-        form.append(statusBlock);
+            statusBlock.textContent = loadText;
+            form.append(statusBlock);
 
-        formData.forEach((val, key) => {
-            formBody[key] = val
-        });
-
-        sendData(formBody).then(data => {
-            statusBlock.textContent = successText;
-            
-            formInputs.forEach(input => {
-                input.value = '';
+            formData.forEach((val, key) => {
+                formBody[key] = val
             });
 
-        }).catch(error => {
-            statusBlock.textContent = errorText;
-        });
+            sendData(formBody).then(data => {
+                statusBlock.textContent = successText;
+
+                formInputs.forEach(input => {
+                    input.value = '';
+                });
+
+            }).catch(error => {
+                statusBlock.textContent = errorText;
+            });
+        } else {
+            alert('Данные не валидны!!!')
+        }
+
     }
 
-
+    
     form.addEventListener('submit', submitForm);
-
+    
 
 };
 
