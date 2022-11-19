@@ -1,4 +1,3 @@
-// import maskPhone from 'maskphone';
 import maskPhone from './maskPhone';
 
 maskPhone('.tel');
