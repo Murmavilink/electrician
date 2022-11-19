@@ -1,5 +1,11 @@
 const sendForm = (idForm) => {
     const form = document.getElementById(idForm);
+    const formInputs = document.querySelectorAll('.form-group input'); 
+    const statusBlock = document.createElement('p');
+    const loadText = 'Загрузка...';
+    const errorText = 'Что-то пошло не так...';
+    const successText = ' Спасибо! Мы скоро с вами свяжемся!';
+
 
     const sendData = (data) => {
         return fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -11,23 +17,34 @@ const sendForm = (idForm) => {
         }).then(res => res.json())
     }
 
-
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
+    const submitForm = () => {
         const formData = new FormData(form);
         const formBody = {}
+
+        statusBlock.textContent = loadText;
+        form.append(statusBlock);
 
         formData.forEach((val, key) => {
             formBody[key] = val
         });
 
-        console.log(formBody);
-
         sendData(formBody).then(data => {
-            console.log(data);
-        });
+            statusBlock.textContent = successText;
+            
+            formInputs.forEach(input => {
+                input.value = '';
+            });
 
+        }).catch(error => {
+            statusBlock.textContent = errorText;
+        });
+    }
+
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        submitForm();
     });
 
 
