@@ -57,7 +57,6 @@ const sendForm = (idForm) => {
         event.preventDefault();
 
         if (validate(formInputs)) {
-            console.log('Submit');
             submitForm();
             removeStatusText();
         }
