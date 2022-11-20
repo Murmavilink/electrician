@@ -13,11 +13,6 @@ const sendForm = (idForm) => {
     const successText = ' Спасибо! Мы скоро с вами свяжемся!';
 
 
-    formInputs[0].addEventListener('input', () => {
-        formInputs[0].value = formInputs[0].value.replace(/\w+/, '')
-    });
-
-
     const sendData = (data) => {
         return fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
@@ -30,36 +25,39 @@ const sendForm = (idForm) => {
 
     const submitForm = (event) => {
         event.preventDefault();
+        const formData = new FormData(form);
+        const formBody = {}
 
-        if (validate(formInputs)) {
-            const formData = new FormData(form);
-            const formBody = {}
+        statusBlock.textContent = loadText;
+        form.append(statusBlock);
 
-            statusBlock.textContent = loadText;
-            form.append(statusBlock);
+        formData.forEach((val, key) => {
+            formBody[key] = val
+        });
 
-            formData.forEach((val, key) => {
-                formBody[key] = val
+        sendData(formBody).then(data => {
+            statusBlock.textContent = successText;
+
+            formInputs.forEach(input => {
+                input.value = '';
             });
 
-            sendData(formBody).then(data => {
-                statusBlock.textContent = successText;
-
-                formInputs.forEach(input => {
-                    input.value = '';
-                });
-
-            }).catch(error => {
-                statusBlock.textContent = errorText;
-            });
-        } else {
-            alert('Данные не валидны!!!')
-        }
-
+        }).catch(error => {
+            statusBlock.textContent = errorText;
+        });
     }
 
+    const examinationForm = (event) => {
+        event.preventDefault();
+
+        validate(formInputs) ? form.addEventListener('submit', submitForm) : '' ;
+    }
+
+
+
     
-    form.addEventListener('submit', submitForm);
+    form.addEventListener('input', examinationForm);
+    form.addEventListener('submit', examinationForm);
     
 
 };
