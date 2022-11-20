@@ -47,10 +47,19 @@ const sendForm = (idForm) => {
         });
     }
 
+    const removeStatusText = () => {
+        setTimeout(() => {
+            statusBlock.remove();
+        }, 3000)
+    }
+
     const examinationForm = (event) => {
         event.preventDefault();
 
-        validate(formInputs) ? form.addEventListener('submit', submitForm) : '' ;
+        if(validate(formInputs)) {
+            form.addEventListener('submit', submitForm);
+            removeStatusText()
+        }
     }
 
 
