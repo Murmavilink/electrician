@@ -7,6 +7,7 @@ maskPhone('.tel');
 const sendForm = (idForm) => {
     const form = document.getElementById(idForm);
     const formInputs = document.querySelectorAll('#form input');
+    const formBtn = document.querySelector('.feedback');
     const statusBlock = document.createElement('p');
     const loadText = 'Загрузка...';
     const errorText = 'Что-то пошло не так...';
@@ -23,8 +24,7 @@ const sendForm = (idForm) => {
         }).then(res => res.json())
     }
 
-    const submitForm = (event) => {
-        event.preventDefault();
+    const submitForm = () => {
         const formData = new FormData(form);
         const formBody = {}
 
@@ -53,21 +53,43 @@ const sendForm = (idForm) => {
         }, 3000)
     }
 
-    const examinationForm = (event) => {
+    const examinationFormSubmit = (event) => {
         event.preventDefault();
 
-        if(validate(formInputs)) {
-            form.addEventListener('submit', submitForm);
-            removeStatusText()
+        if (validate(formInputs)) {
+            console.log('Submit');
+            submitForm();
+            removeStatusText();
         }
     }
 
 
 
-    
-    form.addEventListener('input', examinationForm);
-    form.addEventListener('submit', examinationForm);
-    
+    const examinationFormInput = (event) => {
+        event.preventDefault();
+
+        let element = event.target;
+
+        if (element.matches('[name="fio"]')) {
+            element.value = element.value.replace(/\w+/, '')
+            if (element.value.length < 2) {
+                element.classList.add('error');
+            } else if (element.value.length >= 2) {
+                element.classList.remove('error');
+            }
+        } else if (element.matches('[name="tel"]')) {
+            if (element.value.length < 18) {
+                element.classList.add('error');
+            } else if (element.value.length == 18) {
+                element.classList.remove('error');
+            }
+        }
+    }
+
+
+
+    form.addEventListener('input', examinationFormInput);
+    form.addEventListener('submit', examinationFormSubmit);
 
 };
 

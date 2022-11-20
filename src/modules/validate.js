@@ -1,30 +1,29 @@
-const validate = (list) => {
-    let inputValidate = true
+const validate = (formInputs) => {
+    let inputValidate = false
+    let inputName = false
+    let inputTel = false
+   
 
-    const addValue = (input) => {
-        inputValidate = false
-        input.classList.add('error');
+    if(formInputs[0].value.length < 2) {
+        formInputs[0].classList.add('error');
+    } else if(formInputs[0].value.length >= 2) {
+        inputName = true
+    }
+    
+    if(formInputs[1].value.length < 18) {
+        formInputs[1].classList.add('error');
+    } else if(formInputs[1].value.length == 18) {
+        inputTel = true
     }
 
-    list[0].value = list[0].value.replace(/\w+/, '')
+   
+    if(inputName && inputTel) {
+        inputValidate = true
+    } 
 
-    list.forEach(input => {
-
-        if (input.value === '' || list[0].value.length < 2 || list[1].value.length < 18) {
-            addValue(input);
-        } else if (input.value) {
-            input.classList.remove('error');
-        }
-
-        if (list[0].value.length >= 2) {
-            list[0].classList.remove('error');
-        } else if (list[1].value.length == 18) {
-            list[1].classList.remove('error');
-        }
-
-    });
 
     return inputValidate;
+    
 }
 
 export default validate
