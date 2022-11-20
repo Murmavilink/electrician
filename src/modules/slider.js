@@ -1,9 +1,12 @@
-import { animate } from './helpers'
 import Swiper, {Navigation, Pagination, Autoplay } from 'swiper';
 
 const slider = () => {
 
 	const tables = document.querySelectorAll('.table')
+		
+	tables.forEach(table => {
+		table.classList.add('active');
+	});
 
 	const swiper = new Swiper('.top-slider-swiper', {
 		modules: [Pagination, Autoplay],
@@ -16,10 +19,6 @@ const slider = () => {
 			clickable: true,
 		}
 	});
-
-	tables.forEach(table => {
-		table.classList.add('active')
-	})
 
 
 	///////////////////////////////////////////////////////////////////////////
