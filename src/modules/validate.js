@@ -1,29 +1,26 @@
 const validate = (formInputs) => {
-    let inputValidate = false
-    let inputName = false
-    let inputTel = false
+    let inputValidate = false;
+    let inputName = false;
+    let inputTel = false;
    
-
+    
     if(formInputs[0].value.length < 2) {
         formInputs[0].classList.add('error');
     } else if(formInputs[0].value.length >= 2) {
-        inputName = true
+        inputName = true;
     }
     
     if(formInputs[1].value.length < 18) {
         formInputs[1].classList.add('error');
     } else if(formInputs[1].value.length == 18) {
-        inputTel = true
+        inputTel = true;
     }
-
    
     if(inputName && inputTel) {
-        inputValidate = true
+        inputValidate = true;
     } 
 
+    return inputValidate;  
+};
 
-    return inputValidate;
-    
-}
-
-export default validate
+export default validate;

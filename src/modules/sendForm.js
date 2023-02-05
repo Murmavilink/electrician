@@ -7,12 +7,10 @@ maskPhone('.tel');
 const sendForm = (idForm) => {
     const form = document.getElementById(idForm);
     const formInputs = document.querySelectorAll('#form input');
-    const formBtn = document.querySelector('.feedback');
     const statusBlock = document.createElement('p');
     const loadText = 'Загрузка...';
     const errorText = 'Что-то пошло не так...';
-    const successText = ' Спасибо! Мы скоро с вами свяжемся!';
-
+    const successText = 'Спасибо! Мы скоро с вами свяжемся!';
 
     const sendData = (data) => {
         return fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -21,18 +19,18 @@ const sendForm = (idForm) => {
             headers: {
                 "Content-Type": "application/json"
             }
-        }).then(res => res.json())
-    }
+        }).then(res => res.json());
+    };
 
     const submitForm = () => {
         const formData = new FormData(form);
-        const formBody = {}
+        const formBody = {};
 
         statusBlock.textContent = loadText;
         form.append(statusBlock);
 
         formData.forEach((val, key) => {
-            formBody[key] = val
+            formBody[key] = val;
         });
 
         sendData(formBody).then(data => {
@@ -50,40 +48,45 @@ const sendForm = (idForm) => {
     const removeStatusText = () => {
         setTimeout(() => {
             statusBlock.remove();
-        }, 3000)
-    }
+        }, 3000);
+    };
 
-    const examinationFormSubmit = (event) => {
-        event.preventDefault();
+    const examinationFormSubmit = (e) => {
+        e.preventDefault();
 
         if (validate(formInputs)) {
             submitForm();
             removeStatusText();
         }
-    }
+
+    };
 
 
 
-    const examinationFormInput = (event) => {
-        event.preventDefault();
+    const examinationFormInput = (e) => {
+        const element = e.target;
 
-        let element = event.target;
+        if(element.matches('[name="fio"]')) {
 
-        if (element.matches('[name="fio"]')) {
-            element.value = element.value.replace(/\w+/, '')
+            element.value = element.value.replace(/\w+/, '');
+
             if (element.value.length < 2) {
                 element.classList.add('error');
-            } else if (element.value.length >= 2) {
+            } else {
                 element.classList.remove('error');
             }
-        } else if (element.matches('[name="tel"]')) {
+
+        } else if(element.matches('[name="tel"]')) {
+
             if (element.value.length < 18) {
                 element.classList.add('error');
-            } else if (element.value.length == 18) {
+            } else {
                 element.classList.remove('error');
             }
+
         }
-    }
+
+    };
 
 
 
